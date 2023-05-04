@@ -10,6 +10,7 @@
 using namespace std;
 
 class base_class {
+protected:
     int unique_id;
     string name;
 
