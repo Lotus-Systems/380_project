@@ -3,6 +3,7 @@
 //
 
 #include "base_class.h"
+#include <vector>
 
 #ifndef INC_380_PROJECT_SKILL_H
 #define INC_380_PROJECT_SKILL_H
@@ -19,18 +20,18 @@ protected:
     int unique_id;
     string name;
     int level;
-    int associated_resources;
+    vector<int> associated_resources;
 
 public:
-    Skill(int unique_id, string name, int level, int associated_resources);
+    Skill(int unique_id, string name, int level, vector<int> associated_resources);
     int get_unique_id();
     string get_name();
     int get_level();
-    int get_associated_resources();
+    vector<int> get_associated_resources();
     void set_unique_id(int unique_id);
     void set_name(string name);
     void set_level(int level);
-    void set_associated_resources(int associated_resources);
+    void set_associated_resources(vector<int> associated_resources);
     void print();
 
 };

@@ -5,10 +5,6 @@
 #ifndef INC_380_PROJECT_BASE_CLASS_H
 #include <iostream>
 #include <string>
-#include "Task.h"
-#include "Issue.h"
-#include "Resource.h"
-#include "Skill.h"
 #define INC_380_PROJECT_BASE_CLASS_H
 
 using namespace std;

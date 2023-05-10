@@ -7,7 +7,7 @@
 using namespace std;
 
 Task::Task(int unique_id, string name, string description, string start_date, string end_date, int expected_effort,
-           bool milestone, int dependency, int percent_completion, Issue* associated_issue, Resource* associated_resources) : base_class(unique_id, name){
+           bool milestone, int dependency, int percent_completion, vector<int> associated_issue, vector<int> associated_resources) : base_class(unique_id, name){
     this->description = description;
     this->start_date = start_date;
     this->end_date = end_date;
@@ -48,11 +48,11 @@ int Task::get_percent_completion() {
     return this->percent_completion;
 }
 
-Issue* Task::get_associated_issue() {
+vector<int> Task::get_associated_issue() {
     return this->associated_issue;
 }
 
-Resource* Task::get_associated_resources() {
+vector<int> Task::get_associated_resources() {
     return this->associated_resources;
 }
 
@@ -84,11 +84,11 @@ void Task::set_percent_completion(int percent_completion) {
     this->percent_completion = percent_completion;
 }
 
-void Task::set_associated_issue(int associated_issue) {
+void Task::set_associated_issue(vector<int> associated_issue) {
     this->associated_issue = associated_issue;
 }
 
-void Task::set_associated_resources(int associated_resources) {
+void Task::set_associated_resources(vector<int> associated_resources) {
     this->associated_resources = associated_resources;
 }
 
@@ -102,7 +102,7 @@ void Task::print() {
     cout << "Milestone: " << this->milestone << endl;
     cout << "Dependency: " << this->dependency << endl;
     cout << "Percent Completion: " << this->percent_completion << endl;
-    cout << "Associated Issue: " << this->associated_issue << endl;
-    cout << "Associated Resources: " << this->associated_resources << endl;
+    //cout << "Associated Issue: " << this->associated_issue << endl;
+    //cout << "Associated Resources: " << this->associated_resources << endl;
 }
 
