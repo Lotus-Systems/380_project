@@ -2,7 +2,7 @@
 // Created by lotus-systems on 5/2/23.
 //
 
-#include "../Header Files/base_class.h"
+#include "base_class.h"
 
 base_class::base_class(int unique_id, string name) {
     this->unique_id = unique_id;

@@ -2,12 +2,12 @@
 // Created by lotus-systems on 5/2/23.
 //
 
-#include "../Header Files/Task.h"
+#include "Task.h"
 
 using namespace std;
 
 Task::Task(int unique_id, string name, string description, string start_date, string end_date, int expected_effort,
-           bool milestone, int dependency, int percent_completion, int associated_issue, int associated_resources) : base_class(unique_id, name) {
+           bool milestone, int dependency, int percent_completion, Issue* associated_issue, Resource* associated_resources) : base_class(unique_id, name){
     this->description = description;
     this->start_date = start_date;
     this->end_date = end_date;
@@ -48,11 +48,11 @@ int Task::get_percent_completion() {
     return this->percent_completion;
 }
 
-int Task::get_associated_issue() {
+Issue* Task::get_associated_issue() {
     return this->associated_issue;
 }
 
-int Task::get_associated_resources() {
+Resource* Task::get_associated_resources() {
     return this->associated_resources;
 }
 
