@@ -1,0 +1,57 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/out/build/x64-Debug/.cmake/api/v1/reply/index-2023-05-10T03-35-02-0726.json
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdCXX/CMakeCXXCompilerId.obj
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdCXX/CMakeCXXCompilerId.exe
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdCXX
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdC/CMakeCCompilerId.obj
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdC/CMakeCCompilerId.exe
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdC/CMakeCCompilerId.c
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CompilerIdC
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeSystem.cmake
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeRCCompiler.cmake
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeDetermineCompilerABI_CXX.bin
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeDetermineCompilerABI_C.bin
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeCXXCompiler.cmake
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1/CMakeCCompiler.cmake
+/out/build/x64-Debug/CMakeFiles/3.25.1-msvc1
+/out/build/x64-Debug/CMakeFiles
+/out/build/x64-Debug/.cmake/api/v1/reply/toolchains-v1-b474d236ef76f97b6564.json
+/out/build/x64-Debug/.cmake/api/v1/reply/target-380_project-Debug-b728c935973f9e7fdd79.json
+/out/build/x64-Debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json
+/out/build/x64-Debug/.cmake/api/v1/reply/codemodel-v2-1825328e38d9a5406dd5.json
+/out/build/x64-Debug/.cmake/api/v1/reply/cmakeFiles-v1-695319b0fd2109f722f0.json
+/out/build/x64-Debug/.cmake/api/v1/reply/cache-v2-d0cc45fc8d400cd59d8d.json
+/out/build/x64-Debug/.cmake/api/v1/reply
+/out/build/x64-Debug/.cmake/api/v1/query/client-MicrosoftVS/query.json
+/out/build/x64-Debug/.cmake/api/v1/query/client-MicrosoftVS
+/out/build/x64-Debug/.cmake/api/v1
+/out/build/x64-Debug
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/Final Project/v17/ipch/AutoPCH/e81d47e8d299ebe5/MAIN.ipch
+/.vs/Final Project/v17/ipch/AutoPCH/e81d47e8d299ebe5
+/.vs/Final Project/v17/ipch/AutoPCH/8c8c17efc02c4c4b/BASE_CLASS.ipch
+/.vs/Final Project/v17/ipch/AutoPCH/8c8c17efc02c4c4b
+/.vs/Final Project/v17/ipch/AutoPCH/67163a6c389a9549/MAIN.ipch
+/.vs/Final Project/v17/ipch/AutoPCH/67163a6c389a9549
+/.vs/Final Project/v17/ipch/AutoPCH
+/.vs/Final Project/v17/Browse.VC.opendb
+/.vs/Final Project/v17/Browse.VC.db-wal
+/.vs/Final Project/v17/Browse.VC.db-shm
+/.vs/Final Project/v17/Browse.VC.db
+/.vs/Final Project/v17/.wsuo
+/.vs/Final Project/v17
+/.vs/Final Project/FileContentIndex/read.lock
+/.vs/Final Project/FileContentIndex/dd983245-e5b6-4a3e-b9ed-7ad80b782377.vsidx
+/.vs/Final Project/FileContentIndex/baea47d9-333a-46fe-a3f2-68fd60e29903.vsidx
+/.vs/Final Project/FileContentIndex/2c9b306a-a7c4-4fcf-a9f1-91da8a58600e.vsidx
+/.vs/Final Project/FileContentIndex
+/.vs/Final Project
+/.vs/cmake.db
+/.vs/CMake Overview
+/.vs
