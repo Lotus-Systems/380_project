@@ -4,7 +4,7 @@
 
 #include "Resource.h"
 
-Resource::Resource(int unique_id, string name, float pay_rate, string title, Task* associated_tasks) : base_class(unique_id, name) {
+Resource::Resource(int unique_id, string name, float pay_rate, string title, vector<int> associated_tasks) : base_class(unique_id, name) {
     this->pay_rate = pay_rate;
     this->title = title;
     this->associated_tasks = associated_tasks;
@@ -18,7 +18,7 @@ string Resource::get_title() {
     return this->title;
 }
 
-Task* Resource::get_associated_tasks() {
+vector<int> Resource::get_associated_tasks() {
     return this->associated_tasks;
 }
 
@@ -30,7 +30,7 @@ void Resource::set_title(string title) {
     this->title = title;
 }
 
-void Resource::set_associated_tasks(Task* associated_tasks) {
+void Resource::set_associated_tasks(vector<int> associated_tasks) {
     this->associated_tasks = associated_tasks;
 }
 
@@ -39,7 +39,7 @@ void Resource::print() {
     cout << "Name: " << this->name << endl;
     cout << "Pay Rate: " << this->pay_rate << endl;
     cout << "Title: " << this->title << endl;
-    cout << "Associated Tasks: " << this->associated_tasks << endl;
+    //cout << "Associated Tasks: " << this->associated_tasks << endl;
 }
 
 

@@ -4,6 +4,7 @@
 
 #ifndef INC_380_PROJECT_RESOURCE_H
 #include "base_class.h"
+#include <vector>
 #define INC_380_PROJECT_RESOURCE_H
 
 /*
@@ -20,20 +21,20 @@ protected:
     string name;
     float pay_rate;
     string title;
-    Task* associated_tasks;
+    vector<int> associated_tasks;
 
 public:
-    Resource(int unique_id, string name, float pay_rate, string title, Task* associated_tasks);
+    Resource(int unique_id, string name, float pay_rate, string title, vector<int> associated_tasks);
     int get_unique_id();
     string get_name();
     float get_pay_rate();
     string get_title();
-    Task* get_associated_tasks();
+    vector<int> get_associated_tasks();
     void set_unique_id(int unique_id);
     void set_name(string name);
     void set_pay_rate(int pay_rate);
     void set_title(string title);
-    void set_associated_tasks(Task* associated_tasks);
+    void set_associated_tasks(vector<int> associated_tasks);
     void print();
 
 };
