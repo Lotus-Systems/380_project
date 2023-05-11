@@ -47,17 +47,17 @@ public:
     string get_reference_documents();
     int get_associated_issue();
     int get_associated_resource();
-    void set_description(string description);
-    void set_date_created(string date_created);
-    void set_date_needed(string date_needed);
-    void set_date_made(string date_made);
-    void set_expected_completion_date(string expected_completion_date);
-    void set_actual_completion_date(string actual_completion_date);
-    void set_meeting_notes(string meeting_notes);
-    void set_status(string status);
-    void set_reference_documents(string reference_documents);
-    void set_associated_issue(int associated_issue);
-    void set_associated_resource(int associated_resource);
+    void set_description(string _description);
+    void set_date_created(string _date_created);
+    void set_date_needed(string _date_needed);
+    void set_date_made(string _date_made);
+    void set_expected_completion_date(string _expected_completion_date);
+    void set_actual_completion_date(string _actual_completion_date);
+    void set_meeting_notes(string _meeting_notes);
+    void set_status(string _status);
+    void set_reference_documents(string _reference_documents);
+    void set_associated_issue(int _associated_issue);
+    void set_associated_resource(int _associated_resource);
     void print();
 
 };

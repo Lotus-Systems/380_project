@@ -26,17 +26,22 @@ protected:
     int associated_skill;
 
 public:
-    Resource(int unique_id, string name, float pay_rate, string title, vector<int> associated_tasks);
+    Resource(int unique_id, string name, float pay_rate, string title, int* associated_tasks, int* associated_decisions, int associated_skill);
+    Resource(int unique_id, string name);
     int get_unique_id();
     string get_name();
     float get_pay_rate();
     string get_title();
-    vector<int> get_associated_tasks();
-    void set_unique_id(int unique_id);
-    void set_name(string name);
-    void set_pay_rate(int pay_rate);
-    void set_title(string title);
-    void set_associated_tasks(vector<int> associated_tasks);
+    int* get_associated_tasks();
+    int* get_associated_decisions();
+    int get_associated_skill();
+    void set_unique_id(int _unique_id);
+    void set_name(string _name);
+    void set_pay_rate(int _pay_rate);
+    void set_title(string _title);
+    void set_associated_tasks(int* _associated_tasks);
+    void set_associated_decisions(int* _associated_decisions);
+    void set_associated_skill(int _associated_skill);
     void print();
 
 };

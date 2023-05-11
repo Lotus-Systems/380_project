@@ -27,20 +27,20 @@ int Requirement::get_associated_deliverable() {
     return this->associated_deliverable;
 }
 
-void Requirement::set_requirement_text(string requirement_text) {
-    this->requirement_text = requirement_text;
+void Requirement::set_requirement_text(string _requirement_text) {
+    this->requirement_text = _requirement_text;
 }
 
-void Requirement::set_source_doc(string source_doc) {
-    this->source_doc = source_doc;
+void Requirement::set_source_doc(string _source_doc) {
+    this->source_doc = _source_doc;
 }
 
-void Requirement::set_location_in_doc(string location_in_doc) {
-    this->location_in_doc = location_in_doc;
+void Requirement::set_location_in_doc(string _location_in_doc) {
+    this->location_in_doc = _location_in_doc;
 }
 
-void Requirement::set_associated_deliverable(int associated_deliverable) {
-    this->associated_deliverable = associated_deliverable;
+void Requirement::set_associated_deliverable(int _associated_deliverable) {
+    this->associated_deliverable = _associated_deliverable;
 }
 
 void Requirement::print() {

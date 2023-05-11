@@ -20,10 +20,10 @@ public:
     string get_source_doc();
     string get_location_in_doc();
     int get_associated_deliverable();
-    void set_requirement_text(string requirement_text);
-    void set_source_doc(string source_doc);
-    void set_location_in_doc(string location_in_doc);
-    void set_associated_deliverable(int associated_deliverable);
+    void set_requirement_text(string _requirement_text);
+    void set_source_doc(string _source_doc);
+    void set_location_in_doc(string _location_in_doc);
+    void set_associated_deliverable(int _associated_deliverable);
     void print();
 };
 
