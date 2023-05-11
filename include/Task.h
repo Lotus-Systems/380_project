@@ -19,7 +19,7 @@
  * Task.Dependency,
  * Task.PercentCompletion
  * Task.AssociatedIssue
- * Task.AssociatedResources
+ * Task.AssociatedResource
  */
 
 
@@ -32,8 +32,9 @@ protected:
     bool milestone;
     int dependency;
     int percent_completion;
-    vector<int> associated_issue;
-    vector<int> associated_resources;
+    int associated_issue[MAX_ARRAY_SIZE];
+    int associated_resource;
+    int associated_deliverable;
 
 public:
     Task(int unique_id, string name, string description, string start_date, string end_date, int expected_effort,
@@ -45,8 +46,8 @@ public:
     bool get_milestone();
     int get_dependency();
     int get_percent_completion();
-    vector<int> get_associated_issue();
-    vector<int> get_associated_resources();
+    int* get_associated_issue();
+    int* get_associated_resources();
     void set_description(string description);
     void set_start_date(string start_date);
     void set_end_date(string end_date);

@@ -23,7 +23,9 @@ protected:
     string description;
     string expected_completion_date;
     string actual_completion_date;
-    vector<int> associated_tasks;
+    int associated_task;
+    int associated_action_items[MAX_ARRAY_SIZE];
+    int associated_decisions[MAX_ARRAY_SIZE];
 
 public:
     Issue(int unique_id, string name, string description, string expected_completion_date, string actual_completion_date, vector<int> associated_tasks);

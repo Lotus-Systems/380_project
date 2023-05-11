@@ -20,7 +20,7 @@ protected:
     int unique_id;
     string name;
     int level;
-    vector<int> associated_resources;
+    int associated_resources[MAX_ARRAY_SIZE];
 
 public:
     Skill(int unique_id, string name, int level, vector<int> associated_resources);

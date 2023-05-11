@@ -25,8 +25,8 @@ protected:
     string description;
     string expected_completion_date;
     string actual_completion_date;
-    int associated_tasks;
-    int associated_requirements;
+    int associated_tasks[MAX_ARRAY_SIZE];
+    int associated_requirements[MAX_ARRAY_SIZE];
 
 public:
     Deliverable(int unique_id, string name, string description, string expected_completion_date,

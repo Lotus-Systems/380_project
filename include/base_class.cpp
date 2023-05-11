@@ -36,4 +36,8 @@ void base_class::print() {
     cout << "Name: " << this->name << endl;
 }
 
+void base_class::save(char data_dir[], int data_dir_length) {
+
+}
+
 

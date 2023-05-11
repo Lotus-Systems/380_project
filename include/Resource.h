@@ -21,7 +21,9 @@ protected:
     string name;
     float pay_rate;
     string title;
-    vector<int> associated_tasks;
+    int associated_tasks[MAX_ARRAY_SIZE];
+    int associated_decisions[MAX_ARRAY_SIZE];
+    int associated_skill;
 
 public:
     Resource(int unique_id, string name, float pay_rate, string title, vector<int> associated_tasks);
