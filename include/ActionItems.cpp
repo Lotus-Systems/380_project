@@ -107,19 +107,19 @@ void ActionItems::set_task_id(vector<int> task_id) {
 }
 
 void ActionItems::print() {
-	cout << "ActionItems.UniqueId: " << this->unique_id << endl;
-	cout << "ActionItems.Name: " << this->name << endl;
-	cout << "ActionItems.Description: " << this->description << endl;
-	cout << "ActionItems.Priority: " << this->priority << endl;
-	cout << "ActionItems.Severity: " << this->severity << endl;
-	cout << "ActionItems.DateRaised: " << this->date_raised << endl;
-	cout << "ActionItems.DateAssigned: " << this->date_assigned << endl;
-	cout << "ActionItems.ExpectedCompletionDate: " << this->exp_compl_date << endl;
-	cout << "ActionItems.ActualCompletionDate: " << this->act_compl_date << endl;
-	cout << "ActionItems.Status: " << this->status << endl;
-	cout << "ActionItems.StatusDescription: " << this->status_description << endl;
-	cout << "ActionItems.UpdateDate: " << this->update_date << endl;
-	cout << "ActionItems.TaskId: ";
+	cout << "Unique ID: " << this->unique_id << endl;
+	cout << "Name: " << this->name << endl;
+	cout << "Description: " << this->description << endl;
+	cout << "Priority: " << this->priority << endl;
+	cout << "Severity: " << this->severity << endl;
+	cout << "Date Raised: " << this->date_raised << endl;
+	cout << "Date Assigned: " << this->date_assigned << endl;
+	cout << "Expected CompletionDate: " << this->exp_compl_date << endl;
+	cout << "Actual CompletionDate: " << this->act_compl_date << endl;
+	cout << "Status: " << this->status << endl;
+	cout << "Status Description: " << this->status_description << endl;
+	cout << "Update Date: " << this->update_date << endl;
+	cout << "Task ID: ";
 	for (int i = 0; i < this->task_id.size(); i++) {
 		cout << this->task_id[i] << " ";
 	}
