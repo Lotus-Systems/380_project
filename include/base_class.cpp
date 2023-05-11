@@ -9,6 +9,11 @@ base_class::base_class(int unique_id, string name) {
     this->name = name;
 }
 
+base_class::base_class(base_class *cp) {
+    this->unique_id = cp->unique_id;
+    this->name = cp->name;
+}
+
 int base_class::get_unique_id() {
     return this->unique_id;
 }
@@ -17,12 +22,13 @@ string base_class::get_name() {
     return this->name;
 }
 
-void base_class::set_unique_id(int unique_id) {
-    this->unique_id = unique_id;
+
+void base_class::set_unique_id(int id) {
+    this->unique_id = id;
 }
 
-void base_class::set_name(string name) {
-    this->name = name;
+void base_class::set_name(string _name) {
+    this->name = _name;
 }
 
 void base_class::print() {

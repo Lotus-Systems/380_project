@@ -1,10 +1,11 @@
 //
 // Created by lotus-systems on 5/2/23.
 //
-
-#ifndef INC_380_PROJECT_BASE_CLASS_H
 #include <iostream>
 #include <string>
+#include <vector>
+
+#ifndef INC_380_PROJECT_BASE_CLASS_H
 #define INC_380_PROJECT_BASE_CLASS_H
 
 using namespace std;
@@ -16,6 +17,7 @@ protected:
 
 public:
     base_class(int unique_id, string name);
+    base_class(base_class* cp);
     int get_unique_id();
     string get_name();
     void set_unique_id(int unique_id);
