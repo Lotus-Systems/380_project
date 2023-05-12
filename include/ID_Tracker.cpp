@@ -3,26 +3,41 @@
 //
 
 #include "ID_Tracker.h"
+#include "base_class.h"
 #include <string.h>
+#include <string>
 #include <stdio.h>
 
 ID_Tracker::ID_Tracker(char _data_dir[], int data_dir_length) {
     memcpy(this->data_dir, _data_dir, data_dir_length);
     this->data_dir_length = data_dir_length;
+
 }
 
-void ID_Tracker::add_base_class(base_class* base_class) {
-    this->all_list.push_back(base_class);
+void ID_Tracker::add_base_class(base_class base_class) {
+    this->base_class_list.push_back(base_class);
 }
 
 //TODO: fix this shit
-void ID_Tracker::save_list(vector<base_class*> list, char type[], char data_dir[], int data_dir_length) {
+void ID_Tracker::save_base_class() {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], type, sizeof(type));
+    mempcpy(&save_location[data_dir_length-1], "base_class", 10);
+    //memcpy(&save_location[(data_dir_length-1) + (strlen(type)-1)], index_str.c_str() , index_str.size());
 
+    printf("%s", save_location);
+
+    File.open(data_dir, std::ios::binary | std::ios::out);
+    if(!File)
+    {
+        std::cerr<<"File error <"<<data_dir<<">\n";
+        exit(1);
+    }
+    base_class_list.at(0).save(data_dir, data_dir_length, File);
+    File.close();
+
+    /*
     //base_class test = base_class(1, "test");
-
     FILE *out = fopen(save_location, "wb");
     //for(int i = 0; i < list.size(); i++){
         if(out) {
@@ -31,13 +46,27 @@ void ID_Tracker::save_list(vector<base_class*> list, char type[], char data_dir[
             fclose(out);
         }
     //}
+    */
 }
 
-void ID_Tracker::load_list(vector<base_class*> list, char type[], char data_dir[], int data_dir_length) {
+void ID_Tracker::load_base_class(int index) {
+    string index_str = to_string(index);
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], type, sizeof(type));
+    memcpy(&save_location[data_dir_length-1], "base_class", 10);
 
+    File.open(data_dir, std::ios::binary | std::ios::in);
+    if(!File)
+    {
+        std::cerr<<"File error <"<<data_dir<<">\n";
+        exit(1);
+    }
+    base_class b;
+    b.load(data_dir, data_dir_length, File);
+    base_class_list.push_back(b);
+    File.close();
+
+    /*
     char buffer[sizeof(base_class)] = {0};
     FILE *l = fopen(save_location, "rb");
     // read the whole file, iterate based on the size of the base class
@@ -58,6 +87,7 @@ void ID_Tracker::load_list(vector<base_class*> list, char type[], char data_dir[
             printf("loaded: %s %d %d\n", temp->get_name().c_str(), temp->get_unique_id());
         //}
     }
+    */
 }
 
 void ID_Tracker::save_all(){
@@ -69,7 +99,7 @@ void ID_Tracker::save_all(){
     save_list(skill_list, "skills.bin", data_dir, data_dir_length);
     save_list(task_list, "tasks.bin", data_dir, data_dir_length);
     */
-    save_list(all_list, "all.bin", data_dir, data_dir_length);
+    //save_list(all_list, "all.bin", data_dir, data_dir_length);
 }
 
 void ID_Tracker::load_all() {
@@ -81,5 +111,5 @@ void ID_Tracker::load_all() {
     load_list(skill_list, "skills.bin", data_dir, data_dir_length);
     load_list(task_list, "tasks.bin", data_dir, data_dir_length);
     */
-    load_list(all_list, "all.bin", data_dir, data_dir_length);
+    //load_list(all_list, "all.bin", data_dir, data_dir_length);
 }
