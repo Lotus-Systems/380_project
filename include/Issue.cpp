@@ -10,6 +10,9 @@ Issue::Issue(int unique_id, string name, string description, string expected_com
     this->actual_completion_date = actual_completion_date;
     this->associated_task = associated_task;
 
+    memset(this->associated_action_items, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_decisions, -1, sizeof(int)*MAX_ARRAY_SIZE);
+
     for(int i = 0; i < sizeof(MAX_ARRAY_SIZE); i++) {
         this->associated_action_items[i] = associated_action_items[i];
         this->associated_decisions[i] = associated_decisions[i];
@@ -17,6 +20,8 @@ Issue::Issue(int unique_id, string name, string description, string expected_com
 }
 
 Issue::Issue(int unique_id, string name, string description) : base_class(unique_id, name) {
+    memset(this->associated_action_items, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_decisions, -1, sizeof(int)*MAX_ARRAY_SIZE);
     this->description = description;
 }
 

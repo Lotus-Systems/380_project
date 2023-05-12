@@ -9,6 +9,9 @@ Deliverable::Deliverable(int unique_id, string name, string description, string 
     this->expected_completion_date = expected_completion_date;
     this->actual_completion_date = actual_completion_date;
 
+    memset(this->associated_tasks, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_requirements, -1, sizeof(int)*MAX_ARRAY_SIZE);
+
     for(int i = 0; i < sizeof(MAX_ARRAY_SIZE); i++) {
         this->associated_tasks[i] = associated_tasks[i];
         this->associated_requirements[i] = associated_requirements[i];
@@ -16,6 +19,8 @@ Deliverable::Deliverable(int unique_id, string name, string description, string 
 }
 
 Deliverable::Deliverable(int unique_id, string name, string description) : base_class(unique_id, name) {
+    memset(this->associated_tasks, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_requirements, -1, sizeof(int)*MAX_ARRAY_SIZE);
     this->description = description;
 }
 

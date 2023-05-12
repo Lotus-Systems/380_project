@@ -15,6 +15,9 @@ Task::Task(int unique_id, string name, string description, string start_date, st
     this->milestone = milestone;
     this->dependency = dependency;
     this->percent_completion = percent_completion;
+
+    memset(this->associated_issues, 0, sizeof(this->associated_issues));
+
     for (int i = 0; i < MAX_ARRAY_SIZE; i++)
         this->associated_issues[i] = associated_issue[i];
     this->associated_resource = associated_resource;
@@ -29,8 +32,7 @@ Task::Task(int unique_id, string name) : base_class(unique_id, name) {
     this->milestone = false;
     this->dependency = 0;
     this->percent_completion = 0;
-    for (int i = 0; i < MAX_ARRAY_SIZE; i++)
-        this->associated_issues[i] = 0;
+    memset(this->associated_issues, 0, sizeof(this->associated_issues));
     this->associated_resource = 0;
     this->associated_deliverable = 0;
 }

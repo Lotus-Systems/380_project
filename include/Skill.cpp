@@ -6,12 +6,16 @@
 
 Skill::Skill(int unique_id, string name, int level, int* associated_resources) : base_class(unique_id, name) {
     this->level = level;
+
+    memset(this->associated_resources, -1, sizeof(int)*MAX_ARRAY_SIZE);
+
     for(int i = 0; i < sizeof(MAX_ARRAY_SIZE); i++) {
         this->associated_resources[i] = associated_resources[i];
     }
 }
 
 Skill::Skill(int unique_id, string name) : base_class(unique_id, name) {
+    memset(this->associated_resources, -1, sizeof(int)*MAX_ARRAY_SIZE);
     this->level = 0;
 }
 

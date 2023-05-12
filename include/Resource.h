@@ -28,8 +28,6 @@ protected:
 public:
     Resource(int unique_id, string name, float pay_rate, string title, int* associated_tasks, int* associated_decisions, int associated_skill);
     Resource(int unique_id, string name);
-    int get_unique_id();
-    string get_name();
     float get_pay_rate();
     string get_title();
     int* get_associated_tasks();

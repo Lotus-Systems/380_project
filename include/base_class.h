@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <vector>
 
 #ifndef INC_380_PROJECT_BASE_CLASS_H

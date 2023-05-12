@@ -8,6 +8,9 @@ Resource::Resource(int unique_id, string name, float pay_rate, string title, int
     this->pay_rate = pay_rate;
     this->title = title;
 
+    memset(this->associated_tasks, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_decisions, -1, sizeof(int)*MAX_ARRAY_SIZE);
+
     for(int i = 0; i < sizeof(MAX_ARRAY_SIZE); i++) {
         this->associated_tasks[i] = associated_tasks[i];
         this->associated_decisions[i] = associated_decisions[i];
@@ -17,6 +20,8 @@ Resource::Resource(int unique_id, string name, float pay_rate, string title, int
 }
 
 Resource::Resource(int unique_id, string name) : base_class(unique_id, name) {
+    memset(this->associated_tasks, -1, sizeof(int)*MAX_ARRAY_SIZE);
+    memset(this->associated_decisions, -1, sizeof(int)*MAX_ARRAY_SIZE);
     this->pay_rate = 0;
     this->title = "";
 }
