@@ -45,13 +45,17 @@ int main(int argc, char *argv[]) {
     data_dir_length = strlen(data_dir);
     ID_Tracker id_tracker = ID_Tracker(data_dir, data_dir_length);
 
-    //id_tracker.add_base_class(base_class(1, "test"));
 
-    //id_tracker.save_base_class();
+    id_tracker.add_base_class(base_class(1, "test"));
+    id_tracker.add_base_class(base_class(2, "test2"));
+    id_tracker.add_base_class(base_class(3, "test3"));
+    id_tracker.add_base_class(base_class(4, "test4"));
+    id_tracker.add_base_class(base_class(5, "test5"));
+    id_tracker.save_base_class();
 
-    id_tracker.load_base_class();
 
-    id_tracker.print_all_base_classes();
+    //id_tracker.load_base_class();
+    //id_tracker.print_all_base_classes();
 
     return 0;
 }

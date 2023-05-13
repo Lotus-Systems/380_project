@@ -6,6 +6,7 @@
 #include <string.h>
 #include <string>
 #include <stdio.h>
+#include <filesystem>
 
 ID_Tracker::ID_Tracker(char _data_dir[], int data_dir_length) {
     memcpy(this->data_dir, _data_dir, data_dir_length);
@@ -336,72 +337,55 @@ void ID_Tracker::print_all() {
 void ID_Tracker::save_base_class() {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
+    //memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
     //memcpy(&save_location[(data_dir_length-1) + (strlen(type)-1)], index_str.c_str() , index_str.size());
 
     printf("%s\n", save_location);
 
-    File.open(save_location, std::ios::binary | std::ios::out);
-    if(!File)
-    {
-        std::cerr<<"File error <"<<data_dir<<">\n";
-        exit(1);
-    }
-    base_class_list.at(0).save(save_location, data_dir_length + strlen("base_class.bin"), File);
-    File.close();
-
-    /*
-    //base_class test = base_class(1, "test");
-    FILE *out = fopen(save_location, "wb");
-    //for(int i = 0; i < list.size(); i++){
-        if(out) {
-            base_class* temp = list.at(0);
-            fwrite(temp, sizeof(uint8_t), sizeof(base_class), out);
-            fclose(out);
+    for(int i = 0; i < base_class_list.size(); i++) {
+        string extension = "base_class" + to_string(i) + ".bin";
+        //char c_extension[255] = {0};
+        //memcpy(&c_extension[0], "base_class", 10);
+        //memcpy(&c_extension[10], to_string(i).c_str(), to_string(i).size());
+        //memcpy(&c_extension[10 + to_string(i).length()], ".bin", 4);
+        //memcpy(&save_location[data_dir_length-1], c_extension, strlen(c_extension));
+        memcpy(&save_location[data_dir_length-1], extension.c_str(), extension.length());
+        File.open(save_location, std::ios::binary | std::ios::out);
+        if(!File)
+        {
+            std::cerr<<"File error <"<<data_dir<<">\n";
+            exit(1);
         }
-    //}
-    */
+        base_class_list.at(i).save(save_location, data_dir_length + extension.length(), File);
+        File.close();
+    }
+    //base_class_list.at(0).save(save_location, data_dir_length + 14, File);
 }
 
 void ID_Tracker::load_base_class() {
     //string index_str = to_string(index);
+    int i = 0;
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
+    //memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
+
+    string extension = "base_class" + to_string(0) + ".bin";
+    memcpy(&save_location[data_dir_length-1], extension.c_str(), extension.length());
 
     File.open(save_location, std::ios::binary | std::ios::in);
-    if(!File)
+    while(std::filesystem::exists(save_location))
     {
-        std::cerr<<"File error <"<<save_location<<">\n";
-        exit(1);
+        printf("%s\n", save_location);
+        base_class b;
+        b.load(save_location, data_dir_length + extension.length(), File);
+        base_class_list.push_back(b);
+        File.close();
+        i++;
+        extension = "base_class" + to_string(i) + ".bin";
+        memcpy(&save_location[data_dir_length-1], extension.c_str(), extension.length());
+        File.open(save_location, std::ios::binary | std::ios::in);
     }
-    base_class b;
-    b.load(save_location, data_dir_length + 14, File);
-    base_class_list.push_back(b);
     File.close();
-
-    /*
-    char buffer[sizeof(base_class)] = {0};
-    FILE *l = fopen(save_location, "rb");
-    // read the whole file, iterate based on the size of the base class
-    // load the file, get file size, divide by size of base class, iterate that many times.
-    // ftell to get the size of the file, fseek to move the pointer to the beginning of the file.
-
-    if(l){
-        fseek(l, 0, SEEK_END);
-        long lSize = ftell(l);
-        lSize = lSize/sizeof(base_class);
-        //rewind(l);
-        fseek(l, 0, SEEK_SET);
-        fread(&buffer[0], sizeof(char), sizeof(base_class), l);
-        //for(int i = 0; i < lSize; i++) {
-            base_class* temp = (base_class*)&buffer[0];
-            base_class new_base = base_class(temp);
-            list.push_back(&new_base);
-            printf("loaded: %s %d %d\n", temp->get_name().c_str(), temp->get_unique_id());
-        //}
-    }
-    */
 }
 
 void ID_Tracker::save_all(){
