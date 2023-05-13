@@ -77,5 +77,7 @@ int main(int argc, char *argv[]) {
 
     base_class b = base_class(128, string("this is a test"));
 
+    ID_Tracker id_tracker = ID_Tracker(data_dir, data_dir_length);
+
     return 0;
 }

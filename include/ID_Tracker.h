@@ -5,8 +5,11 @@
 #ifndef INC_380_PROJECT_ID_TRACKER_H
 #include <vector>
 #include "ActionItems.h"
+#include "base_class.h"
+#include "Decision.h"
 #include "Deliverable.h"
 #include "Issue.h"
+#include "Requirement.h"
 #include "Resource.h"
 #include "Skill.h"
 #include "Task.h"
