@@ -19,7 +19,7 @@ void ID_Tracker::add_base_class(base_class* base_class) {
 void ID_Tracker::save_list(vector<base_class*> list, char type[], char data_dir[], int data_dir_length) {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], type, sizeof(type));
+    memcpy(&save_location[data_dir_length-1], type, sizeof(strlen(type)));
 
     //base_class test = base_class(1, "test");
 
@@ -36,7 +36,7 @@ void ID_Tracker::save_list(vector<base_class*> list, char type[], char data_dir[
 void ID_Tracker::load_list(vector<base_class*> list, char type[], char data_dir[], int data_dir_length) {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], type, sizeof(type));
+    memcpy(&save_location[data_dir_length-1], type, sizeof(strlen(type)));
 
     char buffer[sizeof(base_class)] = {0};
     FILE *l = fopen(save_location, "rb");
@@ -69,7 +69,7 @@ void ID_Tracker::save_all(){
     save_list(skill_list, "skills.bin", data_dir, data_dir_length);
     save_list(task_list, "tasks.bin", data_dir, data_dir_length);
     */
-    save_list(all_list, "all.bin", data_dir, data_dir_length);
+    //save_list(all_list, "all.bin", data_dir, data_dir_length);
 }
 
 void ID_Tracker::load_all() {
@@ -81,5 +81,5 @@ void ID_Tracker::load_all() {
     load_list(skill_list, "skills.bin", data_dir, data_dir_length);
     load_list(task_list, "tasks.bin", data_dir, data_dir_length);
     */
-    load_list(all_list, "all.bin", data_dir, data_dir_length);
+    //load_list(all_list, "all.bin", data_dir, data_dir_length);
 }
