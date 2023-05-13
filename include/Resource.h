@@ -38,6 +38,8 @@ public:
     void set_associated_tasks(int* _associated_tasks);
     void set_associated_decisions(int* _associated_decisions);
     void set_associated_skill(int _associated_skill);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 
 };

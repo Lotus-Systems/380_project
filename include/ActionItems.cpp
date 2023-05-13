@@ -126,3 +126,106 @@ void ActionItems::print() {
     cout << "Task ID: " << this->task_id << endl;
     cout << endl;
 }
+
+void ActionItems::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    size = description.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)description.c_str(), size );
+
+    size = priority.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)priority.c_str(), size );
+
+    size = severity.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)severity.c_str(), size );
+
+    f.write( (char*)&date_raised, sizeof(date_raised) );
+
+    f.write( (char*)&date_assigned, sizeof(date_assigned) );
+
+    f.write( (char*)&exp_compl_date, sizeof(exp_compl_date) );
+
+    f.write( (char*)&act_compl_date, sizeof(act_compl_date) );
+
+    size = status.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)status.c_str(), size );
+
+    size = status_description.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)status_description.c_str(), size );
+
+    f.write( (char*)&update_date, sizeof(update_date) );
+
+    f.write( (char*)&task_id, sizeof(task_id) );
+}
+
+void ActionItems::load(std::istream &f) {
+    size_t size;
+    char *buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    name = buf;
+    delete[] buf;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    description = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    priority = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    severity = buf;
+    delete[] buf;
+
+    f.read( (char*)&date_raised, sizeof(date_raised) );
+
+    f.read( (char*)&date_assigned, sizeof(date_assigned) );
+
+    f.read( (char*)&exp_compl_date, sizeof(exp_compl_date) );
+
+    f.read( (char*)&act_compl_date, sizeof(act_compl_date) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    status = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    status_description = buf;
+    delete[] buf;
+
+    f.read( (char*)&update_date, sizeof(update_date) );
+
+    f.read( (char*)&task_id, sizeof(task_id) );
+}

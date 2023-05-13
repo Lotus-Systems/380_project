@@ -57,6 +57,8 @@ public:
     void set_reference_documents(string _reference_documents);
     void set_associated_issue(int _associated_issue);
     void set_associated_resource(int _associated_resource);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 };
 

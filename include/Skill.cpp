@@ -48,4 +48,34 @@ void Skill::print() {
     cout << endl;
 }
 
+void Skill::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    f.write( (char*)&level, sizeof(level) );
+
+    f.write( (char*)associated_resources, sizeof(associated_resources) * MAX_ARRAY_SIZE);
+}
+
+void Skill::load(std::istream &f) {
+    size_t size;
+    char* data;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    data = new char[size];
+    f.read( data, size );
+    name = data;
+    delete[] data;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&level, sizeof(level) );
+
+    f.read( (char*)associated_resources, sizeof(associated_resources) * MAX_ARRAY_SIZE);
+}
 

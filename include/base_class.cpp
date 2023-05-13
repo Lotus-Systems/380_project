@@ -40,13 +40,13 @@ void base_class::print() {
     cout << "Name: " << this->name << endl;
 }
 
-void base_class::save(char* data_dir, int data_dir_length, ostream& f) {
-    size_t size;
-
+void base_class::save(ostream& f) {
     // we need to store the data from the string along with the size
     // because to restore it we need to temporarily read it somewhere
     // before storing it in the std::string (istream::read() doesn't
     // read directly to std::string)
+
+    size_t size;
 
     size = name.size();
     f.write( (char*)&size, sizeof(size_t) );
@@ -55,14 +55,14 @@ void base_class::save(char* data_dir, int data_dir_length, ostream& f) {
     f.write( (char*)&unique_id, sizeof(unique_id) );
 }
 
-void base_class::load(char* data_dir, int data_dir_length, istream& f ) {
-    size_t size;
-    char* data;
-
+void base_class::load(istream& f ) {
     // we need to store the data from the string along with the size
     // because to restore it we need to temporarily read it somewhere
     // before storing it in the std::string (istream::read() doesn't
     // read directly to std::string)
+
+    size_t size;
+    char* data;
 
     f.read( (char*)&size, sizeof(size_t) );
     data = new char[size+1];

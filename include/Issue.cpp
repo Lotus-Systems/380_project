@@ -94,5 +94,58 @@ void Issue::print() {
         cout << this->associated_decisions[i] << " ";
     }
     cout << endl;
+}
 
+void Issue::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t));
+    f.write( (char*)name.c_str(), size);
+
+    f.write( (char*)&unique_id, sizeof(unique_id));
+
+    size = description.size();
+    f.write( (char*)&size, sizeof(size_t));
+    f.write( (char*)description.c_str(), size);
+
+    size = expected_completion_date.size();
+    f.write( (char*)&size, sizeof(size_t));
+    f.write( (char*)expected_completion_date.c_str(), size);
+
+    size = actual_completion_date.size();
+    f.write( (char*)&size, sizeof(size_t));
+    f.write( (char*)actual_completion_date.c_str(), size);
+
+    f.write( (char*)&associated_task, sizeof(associated_task));
+
+    f.write( (char*)associated_action_items, sizeof(int)*MAX_ARRAY_SIZE);
+    f.write( (char*)associated_decisions, sizeof(int)*MAX_ARRAY_SIZE);
+}
+
+void Issue::load(std::istream &f) {
+    size_t size;
+
+    f.read( (char*)&size, sizeof(size_t));
+    name.resize(size);
+    f.read( (char*)name.c_str(), size);
+
+    f.read( (char*)&unique_id, sizeof(unique_id));
+
+    f.read( (char*)&size, sizeof(size_t));
+    description.resize(size);
+    f.read( (char*)description.c_str(), size);
+
+    f.read( (char*)&size, sizeof(size_t));
+    expected_completion_date.resize(size);
+    f.read( (char*)expected_completion_date.c_str(), size);
+
+    f.read( (char*)&size, sizeof(size_t));
+    actual_completion_date.resize(size);
+    f.read( (char*)actual_completion_date.c_str(), size);
+
+    f.read( (char*)&associated_task, sizeof(associated_task));
+
+    f.read( (char*)associated_action_items, sizeof(int)*MAX_ARRAY_SIZE);
+    f.read( (char*)associated_decisions, sizeof(int)*MAX_ARRAY_SIZE);
 }

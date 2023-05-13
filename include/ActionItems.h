@@ -60,6 +60,8 @@ public:
     void set_update_date(double update_date);
     void set_task_id(int task_id);
     void print();
+    void save(ostream& f);
+    void load(istream& f);
 
 };
 

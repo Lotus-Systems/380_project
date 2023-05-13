@@ -33,6 +33,8 @@ public:
     void set_name(string name);
     void set_level(int level);
     void set_associated_resources(int* associated_resources);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 
 };

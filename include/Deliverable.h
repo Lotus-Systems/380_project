@@ -31,7 +31,7 @@ protected:
 
 public:
     Deliverable(int unique_id, string name, string description, string expected_completion_date,
-                string actual_completion_date, int* associated_tasks, int* associated_requirements);
+                string actual_completion_date, int associated_tasks, int associated_requirements);
     Deliverable(int unique_id, string name, string description);
     string get_description();
     string get_expected_completion_date();
@@ -43,6 +43,8 @@ public:
     void set_actual_completion_date(string actual_completion_date);
     void set_associated_tasks(int* associated_tasks);
     void set_associated_requirements(int* associated_requirements);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 
 };

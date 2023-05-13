@@ -136,3 +136,88 @@ void Task::print() {
     cout << "Associated Deliverable: " << this->associated_deliverable << endl;
 }
 
+void Task::save(ostream& f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    size = description.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)description.c_str(), size );
+
+    size = start_date.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)start_date.c_str(), size );
+
+    size = end_date.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)end_date.c_str(), size );
+
+    f.write( (char*)&expected_effort, sizeof(expected_effort) );
+
+    f.write( (char*)&milestone, sizeof(milestone) );
+
+    f.write( (char*)&dependency, sizeof(dependency) );
+
+    f.write( (char*)&percent_completion, sizeof(percent_completion) );
+
+    f.write( (char*)associated_issues, sizeof(int)*MAX_ARRAY_SIZE );
+
+    f.write( (char*)&associated_resource, sizeof(associated_resource) );
+
+    f.write( (char*)&associated_deliverable, sizeof(associated_deliverable) );
+}
+
+void Task::load(std::istream &f) {
+    size_t size;
+    char *buffer;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buffer = new char[size+1];
+    f.read( buffer, size );
+    buffer[size] = '\0';
+    name = buffer;
+    delete[] buffer;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buffer = new char[size+1];
+    f.read( buffer, size );
+    buffer[size] = '\0';
+    description = buffer;
+    delete[] buffer;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buffer = new char[size+1];
+    f.read( buffer, size );
+    buffer[size] = '\0';
+    start_date = buffer;
+    delete[] buffer;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buffer = new char[size+1];
+    f.read( buffer, size );
+    buffer[size] = '\0';
+    end_date = buffer;
+    delete[] buffer;
+
+    f.read( (char*)&expected_effort, sizeof(expected_effort) );
+
+    f.read( (char*)&milestone, sizeof(milestone) );
+
+    f.read( (char*)&dependency, sizeof(dependency) );
+
+    f.read( (char*)&percent_completion, sizeof(percent_completion) );
+
+    f.read( (char*)associated_issues, sizeof(int)*MAX_ARRAY_SIZE );
+
+    f.read( (char*)&associated_resource, sizeof(associated_resource) );
+
+    f.read( (char*)&associated_deliverable, sizeof(associated_deliverable) );
+}
+

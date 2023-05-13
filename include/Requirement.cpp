@@ -51,3 +51,64 @@ void Requirement::print() {
     cout << "Location in Document: " << this->location_in_doc << endl;
     cout << "Associated Deliverable: " << this->associated_deliverable << endl;
 }
+
+void Requirement::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    size = requirement_text.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)requirement_text.c_str(), size );
+
+    size = source_doc.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)source_doc.c_str(), size );
+
+    size = location_in_doc.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)location_in_doc.c_str(), size );
+
+    f.write( (char*)&associated_deliverable, sizeof(associated_deliverable) );
+}
+
+void Requirement::load(std::istream &f) {
+    size_t size;
+    char *buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    name = buf;
+    delete[] buf;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    requirement_text = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    source_doc = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    location_in_doc = buf;
+    delete[] buf;
+
+    f.read( (char*)&associated_deliverable, sizeof(associated_deliverable) );
+}

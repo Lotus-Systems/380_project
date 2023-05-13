@@ -88,4 +88,45 @@ void Resource::print() {
     cout << "Associated Skill: " << this->associated_skill << endl;
 }
 
+void Resource::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    f.write( (char*)&pay_rate, sizeof(pay_rate) );
+
+    size = title.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)title.c_str(), size );
+
+    f.write( (char*)associated_tasks, sizeof(int)*MAX_ARRAY_SIZE );
+    f.write( (char*)associated_decisions, sizeof(int)*MAX_ARRAY_SIZE );
+
+    f.write( (char*)&associated_skill, sizeof(associated_skill) );
+}
+
+void Resource::load(std::istream &f) {
+    size_t size;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    name.resize(size);
+    f.read( (char*)name.c_str(), size );
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&pay_rate, sizeof(pay_rate) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    title.resize(size);
+    f.read( (char*)title.c_str(), size );
+
+    f.read( (char*)associated_tasks, sizeof(int)*MAX_ARRAY_SIZE );
+    f.read( (char*)associated_decisions, sizeof(int)*MAX_ARRAY_SIZE );
+
+    f.read( (char*)&associated_skill, sizeof(associated_skill) );
+}
 

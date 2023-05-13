@@ -4,7 +4,7 @@
 
 #include "Deliverable.h"
 
-Deliverable::Deliverable(int unique_id, string name, string description, string expected_completion_date, string actual_completion_date, int* associated_tasks, int* associated_requirements) : base_class(unique_id, name) {
+Deliverable::Deliverable(int unique_id, string name, string description, string expected_completion_date, string actual_completion_date, int associated_tasks, int associated_requirements) : base_class(unique_id, name) {
     this->description = description;
     this->expected_completion_date = expected_completion_date;
     this->actual_completion_date = actual_completion_date;
@@ -75,6 +75,58 @@ void Deliverable::print() {
     cout << "Actual Completion Date: " << this->actual_completion_date << endl;
     cout << "Associated Tasks: " << this->associated_tasks << endl;
     cout << "Associated Requirements: " << this->associated_requirements << endl;
+}
+
+void Deliverable::save(std::ostream &f) {
+    size_t size;
+    size = this->name.size();
+    f.write((char*)&size, sizeof(size));
+    f.write(this->name.c_str(), size);
+
+    f.write((char*)&this->unique_id, sizeof(this->unique_id));
+
+    size = this->description.size();
+    f.write((char*)&size, sizeof(size));
+    f.write(this->description.c_str(), size);
+    size = this->expected_completion_date.size();
+    f.write((char*)&size, sizeof(size));
+    f.write(this->expected_completion_date.c_str(), size);
+    size = this->actual_completion_date.size();
+
+    f.write((char*)&this->associated_tasks, MAX_ARRAY_SIZE);
+    f.write((char*)&this->associated_requirements, MAX_ARRAY_SIZE);
+}
+
+void Deliverable::load(std::istream &f) {
+    size_t size;
+    f.read((char*)&size, sizeof(size));
+    char *buffer = new char[size];
+    f.read(buffer, size);
+    this->name = buffer;
+    delete[] buffer;
+
+    f.read((char*)&this->unique_id, sizeof(this->unique_id));
+
+    f.read((char*)&size, sizeof(size));
+    buffer = new char[size];
+    f.read(buffer, size);
+    this->description = buffer;
+    delete[] buffer;
+
+    f.read((char*)&size, sizeof(size));
+    buffer = new char[size];
+    f.read(buffer, size);
+    this->expected_completion_date = buffer;
+    delete[] buffer;
+
+    f.read((char*)&size, sizeof(size));
+    buffer = new char[size];
+    f.read(buffer, size);
+    this->actual_completion_date = buffer;
+    delete[] buffer;
+
+    f.read((char*)&this->associated_tasks, MAX_ARRAY_SIZE);
+    f.read((char*)&this->associated_requirements, MAX_ARRAY_SIZE);
 }
 
 

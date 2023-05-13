@@ -337,18 +337,11 @@ void ID_Tracker::print_all() {
 void ID_Tracker::save_base_class() {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    //memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
-    //memcpy(&save_location[(data_dir_length-1) + (strlen(type)-1)], index_str.c_str() , index_str.size());
 
     printf("%s\n", save_location);
 
     for(int i = 0; i < base_class_list.size(); i++) {
         string extension = "base_class" + to_string(i) + ".bin";
-        //char c_extension[255] = {0};
-        //memcpy(&c_extension[0], "base_class", 10);
-        //memcpy(&c_extension[10], to_string(i).c_str(), to_string(i).size());
-        //memcpy(&c_extension[10 + to_string(i).length()], ".bin", 4);
-        //memcpy(&save_location[data_dir_length-1], c_extension, strlen(c_extension));
         memcpy(&save_location[data_dir_length-1], extension.c_str(), extension.length());
         File.open(save_location, std::ios::binary | std::ios::out);
         if(!File)
@@ -356,7 +349,7 @@ void ID_Tracker::save_base_class() {
             std::cerr<<"File error <"<<data_dir<<">\n";
             exit(1);
         }
-        base_class_list.at(i).save(save_location, data_dir_length + extension.length(), File);
+        base_class_list.at(i).save(File);
         File.close();
     }
     //base_class_list.at(0).save(save_location, data_dir_length + 14, File);
@@ -377,7 +370,7 @@ void ID_Tracker::load_base_class() {
     {
         printf("%s\n", save_location);
         base_class b;
-        b.load(save_location, data_dir_length + extension.length(), File);
+        b.load( File);
         base_class_list.push_back(b);
         File.close();
         i++;

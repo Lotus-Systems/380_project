@@ -27,8 +27,8 @@ public:
     void set_unique_id(int unique_id);
     void set_name(string name);
     void print();
-    void save(char* data_dir, int data_dir_length, ostream& f);
-    void load(char* data_dir, int data_dir_length, istream& f);
+    void save(ostream& f);
+    void load(istream& f);
 };
 
 

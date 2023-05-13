@@ -42,6 +42,8 @@ public:
     void set_associated_tasks(int _associated_task);
     void set_associated_action_items(int* _associated_action_items);
     void set_associated_decisions(int* _associated_decisions);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 
 };

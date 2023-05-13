@@ -59,6 +59,8 @@ public:
     void set_associated_issue(int _associated_issue);
     void set_associated_resource(int _associated_resource);
     void print();
+    void save(ostream& f);
+    void load(istream& f);
 
 };
 

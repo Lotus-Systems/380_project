@@ -60,6 +60,8 @@ public:
     void set_associated_issue(int* _associated_issue);
     void set_associated_resources(int _associated_resource);
     void set_associated_deliverable(int _associated_deliverable);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 };
 

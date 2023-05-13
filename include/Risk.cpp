@@ -121,3 +121,126 @@ void Risk::print() {
     cout << "Associated Resource: " << this->get_associated_resource() << endl;
 }
 
+void Risk::save(std::ostream &f) {
+    size_t size;
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+
+    size = description.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)description.c_str(), size );
+
+    size = date_created.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)date_created.c_str(), size );
+
+    size = date_needed.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)date_needed.c_str(), size );
+
+    size = date_made.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)date_made.c_str(), size );
+
+    size = expected_completion_date.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)expected_completion_date.c_str(), size );
+
+    size = actual_completion_date.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)actual_completion_date.c_str(), size );
+
+    size = meeting_notes.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)meeting_notes.c_str(), size );
+
+    size = status.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)status.c_str(), size );
+
+    size = reference_documents.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)reference_documents.c_str(), size );
+
+    f.write( (char*)&associated_issue, sizeof(associated_issue) );
+
+    f.write( (char*)&associated_resource, sizeof(associated_resource) );
+}
+
+void Risk::load(std::istream &f) {
+    size_t size;
+    char *buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    name = buf;
+    delete[] buf;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    description = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    date_created = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    date_needed = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    date_made = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    expected_completion_date = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    actual_completion_date = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    meeting_notes = buf;
+    delete[] buf;
+
+    f.read( (char*)&size, sizeof(size_t) );
+    buf = new char[size+1];
+    f.read( buf, size );
+    buf[size] = '\0';
+    status = buf;
+    delete[] buf;
+
+    f.read((char*)&associated_issue, sizeof(associated_issue));
+
+    f.read((char*)&associated_resource, sizeof(associated_resource));
+}

@@ -24,6 +24,8 @@ public:
     void set_source_doc(string _source_doc);
     void set_location_in_doc(string _location_in_doc);
     void set_associated_deliverable(int _associated_deliverable);
+    void save(ostream& f);
+    void load(istream& f);
     void print();
 };
 
