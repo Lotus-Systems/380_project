@@ -20,9 +20,7 @@ using namespace std;
 static char data_dir[255] = {0};
 static int data_dir_length = 0;
 
-int main(int argc, char *argv[]) {
-    // figure out the data directory
-
+void get_data_dir(char* argv[]){
     memcpy(data_dir, argv[0], data_dir_length = strlen(argv[0]));
     char* str_pos = &data_dir[data_dir_length];
     int slash_count = 0;
@@ -35,9 +33,15 @@ int main(int argc, char *argv[]) {
         }
         str_pos--;
     }
-    mempcpy(str_pos, "\\data\\\n", 7);
+    memcpy(str_pos, "\\data\\\n", 7);
     str_pos+= 7;
     memset(str_pos, 0,  255 - data_dir_length);
+}
+
+int main(int argc, char *argv[]) {
+    // figure out the data directory
+
+    get_data_dir(argv);
     data_dir_length = strlen(data_dir);
 
     // create the ID tracker
@@ -49,31 +53,29 @@ int main(int argc, char *argv[]) {
     id_tracker.add_base_class(&test2);
 
     id_tracker.save_all();
-    */
+
     //id_tracker.load_all();
 
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], "test.bin", 9);
-
-    /*
-    base_class b = base_class(128, string("this is a test"));
+    memcpy(&save_location[data_dir_length-1], "test.bin", 9);
 
     FILE *i = fopen(save_location, "wb");
     if(i) {
         fwrite(&b, sizeof(char), sizeof(base_class), i);
         fclose(i);
     }
-    */
+
 
     char buffer[sizeof(base_class)] = {0};
     FILE *l = fopen(save_location, "rb");
     if(l) {
         fread(&buffer[0], sizeof(char), sizeof(base_class), l);
     }
+    fclose(l);
+     */
 
-    base_class *c = (base_class*)&buffer[0];
-    printf("loaded: %s %d\n", c->get_name().c_str(), c->get_unique_id());
+    base_class b = base_class(128, string("this is a test"));
 
     return 0;
 }
