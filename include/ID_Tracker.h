@@ -111,7 +111,7 @@ public:
     void load_all();
 
     void save_base_class();
-    void load_base_class(int index);
+    void load_base_class();
 
 };
 

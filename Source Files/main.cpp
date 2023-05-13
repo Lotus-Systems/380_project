@@ -43,41 +43,15 @@ int main(int argc, char *argv[]) {
 
     get_data_dir(argv);
     data_dir_length = strlen(data_dir);
-
-    // create the ID tracker
-    //ID_Tracker id_tracker = ID_Tracker(data_dir, data_dir_length);
-    /*
-    base_class test1 = base_class(1, "test");
-    base_class test2 = base_class(2, "test2");
-    id_tracker.add_base_class(&test1);
-    id_tracker.add_base_class(&test2);
-
-    id_tracker.save_all();
-
-    //id_tracker.load_all();
-
-    char save_location[255] = {0};
-    memcpy(save_location, data_dir, data_dir_length);
-    memcpy(&save_location[data_dir_length-1], "test.bin", 9);
-
-    FILE *i = fopen(save_location, "wb");
-    if(i) {
-        fwrite(&b, sizeof(char), sizeof(base_class), i);
-        fclose(i);
-    }
-
-
-    char buffer[sizeof(base_class)] = {0};
-    FILE *l = fopen(save_location, "rb");
-    if(l) {
-        fread(&buffer[0], sizeof(char), sizeof(base_class), l);
-    }
-    fclose(l);
-     */
-
-    base_class b = base_class(128, string("this is a test"));
-
     ID_Tracker id_tracker = ID_Tracker(data_dir, data_dir_length);
+
+    //id_tracker.add_base_class(base_class(1, "test"));
+
+    //id_tracker.save_base_class();
+
+    id_tracker.load_base_class();
+
+    id_tracker.print_all_base_classes();
 
     return 0;
 }

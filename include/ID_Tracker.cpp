@@ -17,6 +17,14 @@ void ID_Tracker::add_action_item(ActionItems action_item) {
     this->action_item_list.push_back(action_item);
 }
 
+void ID_Tracker::add_base_class(base_class base_class) {
+    this->base_class_list.push_back(base_class);
+}
+
+void ID_Tracker::add_decision(Decision decision) {
+    this->decision_list.push_back(decision);
+}
+
 void ID_Tracker::add_deliverable(Deliverable deliverable) {
     this->deliverable_list.push_back(deliverable);
 }
@@ -25,8 +33,16 @@ void ID_Tracker::add_issue(Issue issue) {
     this->issue_list.push_back(issue);
 }
 
+void ID_Tracker::add_requirement(Requirement requirement) {
+    this->requirement_list.push_back(requirement);
+}
+
 void ID_Tracker::add_resource(Resource resource) {
     this->resource_list.push_back(resource);
+}
+
+void ID_Tracker::add_risk(Risk risk) {
+    this->risk_list.push_back(risk);
 }
 
 void ID_Tracker::add_skill(Skill skill) {
@@ -37,12 +53,16 @@ void ID_Tracker::add_task(Task task) {
     this->task_list.push_back(task);
 }
 
-void ID_Tracker::add_base_class(base_class base_class) {
-    this->base_class_list.push_back(base_class);
-}
-
 void ID_Tracker::remove_action_item(int unique_id) {
     action_item_list.erase(action_item_list.begin() + unique_id);
+}
+
+void ID_Tracker::remove_base_class(int unique_id) {
+    base_class_list.erase(base_class_list.begin() + unique_id);
+}
+
+void ID_Tracker::remove_decision(int unique_id) {
+    decision_list.erase(decision_list.begin() + unique_id);
 }
 
 void ID_Tracker::remove_deliverable(int unique_id) {
@@ -53,8 +73,16 @@ void ID_Tracker::remove_issue(int unique_id) {
     issue_list.erase(issue_list.begin() + unique_id);
 }
 
+void ID_Tracker::remove_requirement(int unique_id) {
+    requirement_list.erase(requirement_list.begin() + unique_id);
+}
+
 void ID_Tracker::remove_resource(int unique_id) {
     resource_list.erase(resource_list.begin() + unique_id);
+}
+
+void ID_Tracker::remove_risk(int unique_id) {
+    risk_list.erase(risk_list.begin() + unique_id);
 }
 
 void ID_Tracker::remove_skill(int unique_id) {
@@ -69,6 +97,14 @@ ActionItems ID_Tracker::get_action_item(int unique_id) {
     return action_item_list.at(unique_id);
 }
 
+base_class ID_Tracker::get_base_class(int unique_id) {
+    return base_class_list.at(unique_id);
+}
+
+Decision ID_Tracker::get_decision(int unique_id) {
+    return decision_list.at(unique_id);
+}
+
 Deliverable ID_Tracker::get_deliverable(int unique_id) {
     return deliverable_list.at(unique_id);
 }
@@ -77,8 +113,16 @@ Issue ID_Tracker::get_issue(int unique_id) {
     return issue_list.at(unique_id);
 }
 
+Requirement ID_Tracker::get_requirement(int unique_id) {
+    return requirement_list.at(unique_id);
+}
+
 Resource ID_Tracker::get_resource(int unique_id) {
     return resource_list.at(unique_id);
+}
+
+Risk ID_Tracker::get_risk(int unique_id) {
+    return risk_list.at(unique_id);
 }
 
 Skill ID_Tracker::get_skill(int unique_id) {
@@ -292,18 +336,18 @@ void ID_Tracker::print_all() {
 void ID_Tracker::save_base_class() {
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    mempcpy(&save_location[data_dir_length-1], "base_class", 10);
+    memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
     //memcpy(&save_location[(data_dir_length-1) + (strlen(type)-1)], index_str.c_str() , index_str.size());
 
-    printf("%s", save_location);
+    printf("%s\n", save_location);
 
-    File.open(data_dir, std::ios::binary | std::ios::out);
+    File.open(save_location, std::ios::binary | std::ios::out);
     if(!File)
     {
         std::cerr<<"File error <"<<data_dir<<">\n";
         exit(1);
     }
-    base_class_list.at(0).save(data_dir, data_dir_length, File);
+    base_class_list.at(0).save(save_location, data_dir_length + strlen("base_class.bin"), File);
     File.close();
 
     /*
@@ -319,20 +363,20 @@ void ID_Tracker::save_base_class() {
     */
 }
 
-void ID_Tracker::load_base_class(int index) {
-    string index_str = to_string(index);
+void ID_Tracker::load_base_class() {
+    //string index_str = to_string(index);
     char save_location[255] = {0};
     memcpy(save_location, data_dir, data_dir_length);
-    memcpy(&save_location[data_dir_length-1], "base_class", 10);
+    memcpy(&save_location[data_dir_length-1], "base_class.bin", 14);
 
-    File.open(data_dir, std::ios::binary | std::ios::in);
+    File.open(save_location, std::ios::binary | std::ios::in);
     if(!File)
     {
-        std::cerr<<"File error <"<<data_dir<<">\n";
+        std::cerr<<"File error <"<<save_location<<">\n";
         exit(1);
     }
     base_class b;
-    b.load(data_dir, data_dir_length, File);
+    b.load(save_location, data_dir_length + 14, File);
     base_class_list.push_back(b);
     File.close();
 

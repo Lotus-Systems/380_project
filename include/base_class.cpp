@@ -27,7 +27,6 @@ string base_class::get_name() {
     return this->name;
 }
 
-
 void base_class::set_unique_id(int id) {
     this->unique_id = id;
 }
