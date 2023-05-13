@@ -14,6 +14,11 @@ base_class::base_class(base_class *cp) {
     this->name = cp->name;
 }
 
+base_class::base_class(){
+    this->unique_id = 0;
+    this->name = "";
+}
+
 int base_class::get_unique_id() {
     return this->unique_id;
 }
@@ -34,6 +39,40 @@ void base_class::set_name(string _name) {
 void base_class::print() {
     cout << "Unique ID: " << this->unique_id << endl;
     cout << "Name: " << this->name << endl;
+}
+
+void base_class::save(char data_dir[], int data_dir_length, ostream& f) {
+    size_t size;
+
+    // we need to store the data from the string along with the size
+    // because to restore it we need to temporarily read it somewhere
+    // before storing it in the std::string (istream::read() doesn't
+    // read directly to std::string)
+
+    size = name.size();
+    f.write( (char*)&size, sizeof(size_t) );
+    f.write( (char*)name.c_str(), size );
+
+    f.write( (char*)&unique_id, sizeof(unique_id) );
+}
+
+void base_class::load(char data_dir[], int data_dir_length, istream& f ) {
+    size_t size;
+    char* data;
+
+    // we need to store the data from the string along with the size
+    // because to restore it we need to temporarily read it somewhere
+    // before storing it in the std::string (istream::read() doesn't
+    // read directly to std::string)
+
+    f.read( (char*)&size, sizeof(size_t) );
+    data = new char[size+1];
+    f.read( data, size );
+    data[size] = '\0';
+    name = string(data, size);
+    delete[] data;
+
+    f.read( (char*)&unique_id, sizeof(unique_id) );
 }
 
 

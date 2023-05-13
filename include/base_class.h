@@ -3,10 +3,13 @@
 //
 #include <iostream>
 #include <string>
+#include <string.h>
 #include <vector>
 
 #ifndef INC_380_PROJECT_BASE_CLASS_H
 #define INC_380_PROJECT_BASE_CLASS_H
+
+static const int MAX_ARRAY_SIZE = 256;
 
 using namespace std;
 
@@ -18,11 +21,14 @@ protected:
 public:
     base_class(int unique_id, string name);
     base_class(base_class* cp);
+    base_class();
     int get_unique_id();
     string get_name();
     void set_unique_id(int unique_id);
     void set_name(string name);
     void print();
+    void save(char data_dir[], int data_dir_length, ostream& f);
+    void load(char data_dir[], int data_dir_length, istream& f );
 };
 
 
