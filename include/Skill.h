@@ -20,18 +20,19 @@ protected:
     int unique_id;
     string name;
     int level;
-    vector<int> associated_resources;
+    int associated_resources[MAX_ARRAY_SIZE] = {0};
 
 public:
-    Skill(int unique_id, string name, int level, vector<int> associated_resources);
+    Skill(int unique_id, string name, int level, int* associated_resources);
+    Skill(int unique_id, string name);
     int get_unique_id();
     string get_name();
     int get_level();
-    vector<int> get_associated_resources();
+    int* get_associated_resources();
     void set_unique_id(int unique_id);
     void set_name(string name);
     void set_level(int level);
-    void set_associated_resources(vector<int> associated_resources);
+    void set_associated_resources(int* associated_resources);
     void print();
 
 };
