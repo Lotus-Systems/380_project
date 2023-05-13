@@ -33,9 +33,10 @@ protected:
     string status;
     string status_description;
     double update_date;
-    vector<int> task_id;
+    int task_id;
 public:
-    ActionItems(int unique_id, string name, string description, string priority, string severity, double date_raised, double date_assigned, double exp_compl_date, double act_compl_date, string status, string status_description, double update_date, vector<int> task_id);
+    ActionItems(int unique_id, string name, string description, string priority, string severity, double date_raised, double date_assigned, double exp_compl_date, double act_compl_date, string status, string status_description, double update_date, int task_id);
+    ActionItems(int unique_id, string name, string description);
     string get_description();
     string get_priority();
     string get_severity();
@@ -46,7 +47,7 @@ public:
     string get_status();
     string get_status_description();
     double get_update_date();
-    vector<int> get_task_id();
+    int get_task_id();
     void set_description(string description);
     void set_priority(string priority);
     void set_severity(string severity);
@@ -57,7 +58,7 @@ public:
     void set_status(string status);
     void set_status_description(string status_description);
     void set_update_date(double update_date);
-    void set_task_id(vector<int> task_id);
+    void set_task_id(int task_id);
     void print();
 
 };

@@ -4,7 +4,7 @@ using namespace std;
 
 ActionItems::ActionItems(int unique_id, string name, string description, string priority, string severity,
                          double date_raised, double date_assigned, double exp_compl_date, double act_compl_date,
-                         string status, string status_description, double update_date, vector<int> task_id) : base_class(unique_id, name) {
+                         string status, string status_description, double update_date, int task_id) : base_class(unique_id, name) {
     this->description = description;
     this->priority = priority;
     this->severity = severity;
@@ -16,6 +16,10 @@ ActionItems::ActionItems(int unique_id, string name, string description, string 
     this->status_description = status_description;
     this->update_date = update_date;
     this->task_id = task_id;
+}
+
+ActionItems::ActionItems(int unique_id, string name, string description) : base_class(unique_id, name) {
+    this->description = description;
 }
 
 string ActionItems::get_description() {
@@ -58,7 +62,7 @@ double ActionItems::get_update_date() {
     return this->update_date;
 }
 
-vector<int> ActionItems::get_task_id() {
+int ActionItems::get_task_id() {
     return this->task_id;
 }
 
@@ -102,7 +106,7 @@ void ActionItems::set_update_date(double update_date) {
     this->update_date = update_date;
 }
 
-void ActionItems::set_task_id(vector<int> task_id) {
+void ActionItems::set_task_id(int task_id) {
     this->task_id = task_id;
 }
 
@@ -119,9 +123,6 @@ void ActionItems::print() {
     cout << "Status: " << this->status << endl;
     cout << "Status Description: " << this->status_description << endl;
     cout << "Update Date: " << this->update_date << endl;
-    cout << "Task ID: ";
-    for (int i = 0; i < this->task_id.size(); i++) {
-        cout << this->task_id[i] << " ";
-    }
+    cout << "Task ID: " << this->task_id << endl;
     cout << endl;
 }
