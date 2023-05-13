@@ -41,7 +41,7 @@ void base_class::print() {
     cout << "Name: " << this->name << endl;
 }
 
-void base_class::save(char data_dir[], int data_dir_length, ostream& f) {
+void base_class::save(char* data_dir, int data_dir_length, ostream& f) {
     size_t size;
 
     // we need to store the data from the string along with the size
@@ -56,7 +56,7 @@ void base_class::save(char data_dir[], int data_dir_length, ostream& f) {
     f.write( (char*)&unique_id, sizeof(unique_id) );
 }
 
-void base_class::load(char data_dir[], int data_dir_length, istream& f ) {
+void base_class::load(char* data_dir, int data_dir_length, istream& f ) {
     size_t size;
     char* data;
 
