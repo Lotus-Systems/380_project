@@ -11,6 +11,7 @@
 #include "Issue.h"
 #include "Requirement.h"
 #include "Resource.h"
+#include "Risk.h"
 #include "Skill.h"
 #include "Task.h"
 #define INC_380_PROJECT_ID_TRACKER_H
